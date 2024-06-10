@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PizzaHat</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+    }
+
+    header {
+      background-color: #ff6347;
+      color: white;
+      padding: 20px 0;
+    }
+
+    .logo {
+      text-align: center;
+    }
+
+    .logo img {
+      max-width: 150px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      text-align: center;
+      margin: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    #home {
+      background: url('https://www.indiafilings.com/learn/wp-content/uploads/2018/09/Pizza-Hut-Franchise.jpg') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      text-shadow: 5px 5px 10px black;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+
+    .hero button {
+      background-color: #e5533c;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+
+    .hero button:hover {
+      background-color: #d1422d;
+    }
+
+    #special-pizzas {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .pizza-list {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .pizza-item {
+      max-width: 200px;
+      margin: 20px;
+    }
+
+    .pizza-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    #location {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    #location img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    #contact {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .social-media a {
+      margin: 0 10px;
+      color: #fff;
+    }
+
+    .social-media img {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <h1>PizzaHat</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#special-pizzas">Special Pizzas</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home">
+    <div class="hero">
+      <h1>Welcome to PizzaHat</h1>
+      <p>Your favorite pizza, delivered fast and fresh!</p>
+      <button>Order Now</button>
+    </div>
+  </section>
+
+  <section id="special-pizzas">
+    <h2>Special Pizzas</h2>
+    <div class="pizza-list">
+      <div class="pizza-item">
+        <img src="https://veenaazmanov.com/wp-content/uploads/2020/04/Classic-Pizza-Margherita1.jpg" alt="Margherita">
+        <h3>Margherita</h3>
+        <p>A classic delight with fresh tomatoes and basil.</p>
+      </div>
+      <div class="pizza-item">
+        <img src="https://pizzamaruusa.com/wp-content/uploads/2016/01/Pepperoni-Pizza.jpg" alt="Pepperoni">
+        <h3>Pepperoni</h3>
+        <p>Loaded with pepperoni slices and mozzarella cheese.</p>
+      </div>
+      <div class="pizza-item">
+        <img src="https://www.superhealthykids.com/wp-content/uploads/2021/10/best-veggie-pizza-featured-image-square-2.jpg" alt="Veggie">
+        <h3>Veggie</h3>
+        <p>Fresh veggies topped with our signature sauce.</p>
+      </div>
+      <div class="pizza-item">
+        <img src="https://pizzamaruusa.com/wp-content/uploads/2016/01/Hawaiian-shrimp-Pizza.jpg" alt="Hawaiian">
+        <h3>Hawaiian</h3>
+        <p>Ham and pineapple for a tropical taste.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="location">
+    <h2>Find Us</h2>
+    <p>123 Pizza Street, Flavor Town, USA</p>
+    <p>Open daily from 11am to 11pm</p>
+    <img src="https://images.indianexpress.com/2017/05/google-maps-759.jpg" alt="Location Map">
+  </section>
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: contact@pizzahat.com</p>
+    <p>Phone: (123) 456-7890</p>
+  </section>
+
+  <footer>
+    <div class="social-media">
+      <a href="#">FaceBook</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+    </div>
+    <p>&copy; 2024 PizzaHat. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
