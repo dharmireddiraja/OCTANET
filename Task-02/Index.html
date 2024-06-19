@@ -14,53 +14,58 @@
             height: 100vh;
             margin: 0;
         }
-
         .container {
             background: white;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            width: 300px;
+            width: 400px;
         }
-
         h1 {
             text-align: center;
         }
-
         form {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
         }
-
-        input[type="text"] {
-            width: 70%;
+        input[type="text"], input[type="date"], select {
+            margin-bottom: 10px;
             padding: 10px;
+            width: 100%;
         }
-
         button {
             padding: 10px;
         }
-
         ul {
             list-style: none;
             padding: 0;
         }
-
         li {
             padding: 10px;
             background: #f9f9f9;
             margin-top: 10px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
         }
-
-        li button {
+        .task-actions {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .task-actions button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .delete-button {
             background: red;
             color: white;
             border: none;
-            padding: 5px 10px;
-            cursor: pointer;
+        }
+        .complete-button {
+            background: green;
+            color: white;
+            border: none;
         }
     </style>
 </head>
@@ -69,6 +74,16 @@
         <h1>To-Do List</h1>
         <form id="todo-form">
             <input type="text" id="todo-input" placeholder="Enter a new task" required>
+            <input type="date" id="todo-date" required>
+            <select id="todo-type" required>
+                <option value="Personal">Personal</option>
+                <option value="Work">Work</option>
+            </select>
+            <select id="todo-priority" required>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
             <button type="submit">Add Task</button>
         </form>
         <ul id="todo-list"></ul>
@@ -77,44 +92,62 @@
         document.addEventListener('DOMContentLoaded', () => {
             const todoForm = document.getElementById('todo-form');
             const todoInput = document.getElementById('todo-input');
+            const todoDate = document.getElementById('todo-date');
+            const todoType = document.getElementById('todo-type');
+            const todoPriority = document.getElementById('todo-priority');
             const todoList = document.getElementById('todo-list');
 
-            // Load existing tasks from local storage
             const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
             tasks.forEach(task => addTaskToDOM(task));
 
-            // Handle form submission
             todoForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const taskText = todoInput.value;
-                const task = { id: Date.now(), text: taskText };
-
-                // Add task to local storage
+                const taskDate = todoDate.value;
+                const taskType = todoType.value;
+                const taskPriority = todoPriority.value;
+                const task = { id: Date.now(), text: taskText, date: taskDate, type: taskType, priority: taskPriority, completed: false };
                 tasks.push(task);
                 localStorage.setItem('tasks', JSON.stringify(tasks));
-
-                // Add task to DOM
                 addTaskToDOM(task);
                 todoInput.value = '';
+                todoDate.value = '';
+                todoType.value = 'Personal';
+                todoPriority.value = 'Low';
             });
 
-            // Add task to the DOM
             function addTaskToDOM(task) {
                 const li = document.createElement('li');
-                li.textContent = task.text;
+                li.innerHTML = `
+                    <strong>${task.text}</strong><br>
+                    Date: ${task.date}<br>
+                    Type: ${task.type}<br>
+                    Priority: ${task.priority}
+                `;
+                const taskActions = document.createElement('div');
+                taskActions.className = 'task-actions';
+
+                const completeButton = document.createElement('button');
+                completeButton.textContent = 'Complete';
+                completeButton.className = 'complete-button';
+                completeButton.addEventListener('click', () => {
+                    task.completed = true;
+                    localStorage.setItem('tasks', JSON.stringify(tasks));
+                    li.style.textDecoration = 'line-through';
+                });
 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
+                deleteButton.className = 'delete-button';
                 deleteButton.addEventListener('click', () => {
-                    // Remove task from local storage
                     const updatedTasks = tasks.filter(t => t.id !== task.id);
                     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-
-                    // Remove task from DOM
                     li.remove();
                 });
 
-                li.appendChild(deleteButton);
+                taskActions.appendChild(completeButton);
+                taskActions.appendChild(deleteButton);
+                li.appendChild(taskActions);
                 todoList.appendChild(li);
             }
         });
